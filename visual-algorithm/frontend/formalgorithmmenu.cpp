@@ -1,6 +1,7 @@
 #include <QToolBox>
 #include <QListWidget>
 #include <QVBoxLayout>
+#include "moduleloader.h"
 #include "formalgorithmmenu.h"
 
 FormAlgorithmMenu::FormAlgorithmMenu(QWidget *parent)
@@ -13,15 +14,13 @@ FormAlgorithmMenu::FormAlgorithmMenu(QWidget *parent)
     layout->setSpacing(0);
 
     // 初始化抽屉式工具栏
-    const int npages = 4;
-    QListWidget *pages[npages];
-    const char *pagesText[npages] = {"贪心算法","分治算法","图论算法","递归算法"};
-
+    QListWidget *pages[N_MAX_GROUPS];
+    const int npages = ModuleLoader::instance().getGroupsNum();
     for(int i=0;i<npages;++i) {
         pages[i] = new QListWidget(this);
     }
     for(int i=0;i<npages; ++i) {
-        m_toolBox->addItem(pages[i], QIcon(":/new/icons/assets/algogroup.png"), pagesText[i]);
+        m_toolBox->addItem(pages[i], QIcon(":/new/icons/assets/algogroup.png"), ModuleLoader::instance().getGroupText(i));
     }
     layout->addWidget(m_toolBox);
 
