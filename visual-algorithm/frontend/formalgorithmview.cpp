@@ -1,5 +1,6 @@
 #include <QLayout>
 #include <QGroupBox>
+#include <QSizePolicy>
 #include "models.h"
 #include "formalgorithmview.h"
 
@@ -19,7 +20,7 @@ FormAlgorithmView::FormAlgorithmView(IModule *module, IModel *model, QWidget *pa
         new QGroupBox(tr("Data Input"), this),
         new QGroupBox(tr("Data Output"), this),
     };
-    QLayout *groupPage[2] = {
+    QHBoxLayout *groupPage[2] = {
         new QHBoxLayout(),
         new QHBoxLayout()
     };
@@ -31,7 +32,6 @@ FormAlgorithmView::FormAlgorithmView(IModule *module, IModel *model, QWidget *pa
     }
 
     this->setWindowTitle(tr("Algorithm View - ") + QString(module->getName()) + "-" + QString(module->getGroup()));
-    this->setFixedSize(100,100);
 }
 
 void FormAlgorithmView::closeEvent(QCloseEvent *)

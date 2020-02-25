@@ -30,7 +30,7 @@ public:
     void moveTop(char src, char dst);
 
 private:
-
+    int m_maxDiskNum;
 };
 
 #endif // MODELHANOIIMPL_H

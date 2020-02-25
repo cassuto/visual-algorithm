@@ -1,6 +1,11 @@
+#include <QPushButton>
+#include <QFormLayout>
+#include <QLabel>
+#include <QSpinBox>
 #include "modelhanoiimpl.h"
 
 ModelHanoiImpl::ModelHanoiImpl()
+    : m_maxDiskNum(10)
 {
 }
 
@@ -11,7 +16,16 @@ ModelHanoiImpl::ModelHanoiImpl()
 
 QWidget *ModelHanoiImpl::createInputWidget(QWidget * parent)
 {
-    return new QWidget(parent);
+    QWidget *page = new QWidget(parent);
+    QFormLayout *layout = new QFormLayout(page);
+    QLabel *label = new QLabel(tr("Number of Disks:"), page);
+    layout->addWidget(label);
+    QSpinBox *spinDiskNum = new QSpinBox(page);
+    spinDiskNum->setMaximum(m_maxDiskNum);
+    spinDiskNum->setMinimum(1);
+    layout->addWidget(spinDiskNum);
+    page->setMinimumSize(100,100);
+    return page;
 }
 
 QWidget *ModelHanoiImpl::createOutputWidget(QWidget * parent)
