@@ -18,3 +18,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     formalgorithmmenu.h
+
+RESOURCES += \
+    resources.qrc

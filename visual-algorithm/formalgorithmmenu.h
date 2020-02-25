@@ -12,6 +12,9 @@ public:
 signals:
 
 public slots:
+
+protected:
+    class QToolBox *m_toolBox;
 };
 
 #endif // FORMALGORITHMMENU_H
