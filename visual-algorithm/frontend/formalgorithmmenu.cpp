@@ -14,13 +14,15 @@ FormAlgorithmMenu::FormAlgorithmMenu(QWidget *parent)
     layout->setSpacing(0);
 
     // 初始化抽屉式工具栏
-    QListWidget *pages[N_MAX_GROUPS];
-    const int npages = ModuleLoader::instance().getGroupsNum();
-    for(int i=0;i<npages;++i) {
-        pages[i] = new QListWidget(this);
-    }
-    for(int i=0;i<npages; ++i) {
-        m_toolBox->addItem(pages[i], QIcon(":/new/icons/assets/algogroup.png"), ModuleLoader::instance().getGroupText(i));
+    const QSet<QString> &groups = ModuleLoader::instance().getGroups();
+    foreach(const QString &gs, groups) {
+        QListWidget *page = new QListWidget(this);
+        const QList<IModule *> &modList = ModuleLoader::instance().getModules(gs);
+        foreach(IModule *mod, modList) {
+            QListWidgetItem *item = new QListWidgetItem(QIcon(":/new/icons/assets/algogroup.png"),mod->getName(),page);
+            page->addItem(item);
+        }
+        m_toolBox->addItem(page, gs);
     }
     layout->addWidget(m_toolBox);
 

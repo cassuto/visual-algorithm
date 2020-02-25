@@ -15,6 +15,7 @@ public:
 protected:
     // 重载IModule接口
     const char *getName() const;
+    const char *getGroup() const;
 };
 
 #endif // MODULEHANOI_H

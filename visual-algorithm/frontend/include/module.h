@@ -11,10 +11,15 @@ public:
     virtual ~IModule() {}
 
     /**
-     * @brief 获取模块名称
+     * @brief 获取算法模块名称
      * @return pointer to string constant value
      */
     virtual const char *getName() const=0;
+    /**
+     * @brief 获取算法分组名称
+     * @return group id
+     */
+    virtual const char *getGroup() const=0;
 };
 
 // 声明接口类
