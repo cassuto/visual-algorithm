@@ -2,7 +2,7 @@
 #define MODULEHANOI_H
 
 #include "module-hanoi_global.h"
-#include "module.h"
+#include "imodule.h"
 
 class MODULEHANOISHARED_EXPORT ModuleHanoi : public QObject, public IModule
 {
@@ -19,6 +19,7 @@ protected:
      */
     const char *getName() const;
     const char *getGroup() const;
+    const char *getModelSymbol() const;
     int open();
     void close();
 

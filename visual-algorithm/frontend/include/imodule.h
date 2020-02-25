@@ -10,7 +10,6 @@ class IModule
 {
 public:
     IModule() {}
-    virtual ~IModule() {}
 
     /**
      * @brief 获取算法模块名称
@@ -19,9 +18,14 @@ public:
     virtual const char *getName() const=0;
     /**
      * @brief 获取算法分组名称
-     * @return group id
+     * @return pointer to string constant value
      */
     virtual const char *getGroup() const=0;
+    /**
+     * @brief 获取模型标识符
+     * @return pointer to string constant value
+     */
+    virtual const char *getModelSymbol() const=0;
 
     /**
      * @brief 初始化算法

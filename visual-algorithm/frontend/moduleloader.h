@@ -6,7 +6,8 @@
 #include <QSet>
 #include <QString>
 
-#include "module.h"
+#include "imodule.h"
+#include "imodel.h"
 
 /**
  * @brief The ModuleLoader class
@@ -32,9 +33,10 @@ public:
     /**
      * @brief 打开算法模块
      * @param mod 指向算法模块接口的指针
+     * @param model [out] 指向存储模型接口指针的指针
      * @return status code
      */
-    int openModule(IModule *mod);
+    int openModule(IModule *mod, IModel **model);
     /**
      * @brief 关闭算法模块
      * @param mod 指向算法模块接口的指针

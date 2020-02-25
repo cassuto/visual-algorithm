@@ -19,6 +19,11 @@ const char *ModuleHanoi::getGroup() const
     return "递归算法";
 }
 
+const char *ModuleHanoi::getModelSymbol() const
+{
+    return "hanoi";
+}
+
 int ModuleHanoi::open()
 {
     return 0;

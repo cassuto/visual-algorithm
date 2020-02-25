@@ -17,15 +17,20 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     moduleloader.cpp \
-    formalgorithmview.cpp
+    formalgorithmview.cpp \
+    models.cpp \
+    modelhanoiimpl.cpp
 
 HEADERS  += dialog.h \
     formalgorithmmenu.h \
     mainwindow.h \
     moduleloader.h \
-    include/module.h \
     include/errorcodes.h \
-    formalgorithmview.h
+    formalgorithmview.h \
+    include/imodel.h \
+    include/imodule.h \
+    models.h \
+    modelhanoiimpl.h
 
 RESOURCES += \
     resources.qrc

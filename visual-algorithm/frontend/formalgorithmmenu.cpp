@@ -45,11 +45,12 @@ void FormAlgorithmMenu::menuDbClicked(QListWidgetItem *item)
     IModule *module = static_cast<IModule *>(item->data(Qt::UserRole).value<void*>());
     Q_ASSERT(module);
 
-    int status = ModuleLoader::instance().openModule(module);
+    IModel *model = 0l;
+    int status = ModuleLoader::instance().openModule(module, &model);
     switch(status) {
     case VA_OK: // 成功
         {
-            FormAlgorithmView *view = new FormAlgorithmView(module);
+            FormAlgorithmView *view = new FormAlgorithmView(module, model);
             MainWindow::instance().workspace().addSubWindow(view);
             connect(view, SIGNAL(viewClosed(IModule *)), this, SLOT(viewClosed(IModule *)));
             view->show();

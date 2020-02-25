@@ -1,6 +1,7 @@
 #include <QPluginLoader>
 #include <QDebug>
-#include "module.h"
+#include "imodule.h"
+#include "models.h"
 #include "moduleloader.h"
 
 ModuleLoader *ModuleLoader::m_instance = 0;
@@ -48,15 +49,20 @@ const QList<class IModule *> &ModuleLoader::getModules(const QString &group) con
 /**
  * @brief 打开算法模块
  * @param mod 指向算法模块接口的指针
+ * @param model [out] 指向存储模型接口指针的指针
  * @return status code
  */
-int ModuleLoader::openModule(IModule *mod)
+int ModuleLoader::openModule(IModule *module, IModel **model)
 {
-    if (!m_moduleOpened[mod]) {
-        if(int rc = mod->open()) {
+    if (!m_moduleOpened[module]) {
+        *model = ModelFactory::instance().createModel(module->getModelSymbol());
+        if(*model == 0l) {
+            return -VA_INVALID_MODEL;
+        }
+        if(int rc = module->open()) {
             return rc;
         }
-        m_moduleOpened[mod] = true;
+        m_moduleOpened[module] = true;
         return 0;
     }
     return -VA_OPENED;
@@ -68,5 +74,6 @@ int ModuleLoader::openModule(IModule *mod)
  */
 void ModuleLoader::closeModule(IModule *mod)
 {
+    mod->close();
     m_moduleOpened[mod] = false;
 }

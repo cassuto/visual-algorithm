@@ -2,7 +2,8 @@
 #define FORMDATAINPUT_H
 
 #include <QWidget>
-#include "module.h"
+#include "imodule.h"
+#include "imodel.h"
 
 /**
  * @brief The formdatainput class
@@ -12,7 +13,7 @@ class FormAlgorithmView : public QWidget
 {
     Q_OBJECT
 public:
-    explicit FormAlgorithmView(IModule *module, QWidget *parent = 0);
+    explicit FormAlgorithmView(IModule *module, IModel *model, QWidget *parent = 0);
 
 signals:
     void viewClosed(IModule *module);
@@ -24,6 +25,9 @@ protected:
 
 protected:
     IModule *m_module;
+    IModel *m_model;
+    QWidget *m_inputWidget;
+    QWidget *m_outputWidget;
 };
 
 #endif // FORMDATAINPUT_H
