@@ -2,7 +2,6 @@
 #include <QStatusBar>
 #include <QDebug>
 #include "formalgorithmmenu.h"
-#include "formalgorithmview.h"
 #include "mainwindow.h"
 
 MainWindow *MainWindow::m_instance = 0l;
@@ -22,11 +21,4 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 
-}
-
-void MainWindow::createAlgorithmForm(class IModule *module)
-{
-    FormAlgorithmView *datio = new FormAlgorithmView(module);
-    m_mdiArea->addSubWindow(datio);
-    datio->show();
 }

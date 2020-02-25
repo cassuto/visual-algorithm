@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMdiArea>
 
 class MainWindow : public QMainWindow
 {
@@ -19,7 +20,9 @@ public:
         return *m_instance;
     }
 
-    void createAlgorithmForm(class IModule *module);
+    inline QMdiArea &workspace() const {
+        return *m_mdiArea;
+    }
 
 protected:
     class QMdiArea *m_mdiArea;

@@ -1,3 +1,4 @@
+
 #include "formalgorithmview.h"
 
 FormAlgorithmView::FormAlgorithmView(IModule *module, QWidget *parent)
@@ -8,3 +9,7 @@ FormAlgorithmView::FormAlgorithmView(IModule *module, QWidget *parent)
     this->setFixedSize(100,100);
 }
 
+void FormAlgorithmView::closeEvent(QCloseEvent *)
+{
+    emit viewClosed(m_module);
+}

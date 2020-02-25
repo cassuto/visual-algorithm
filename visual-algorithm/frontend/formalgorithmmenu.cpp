@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include "moduleloader.h"
 #include "mainwindow.h"
+#include "formalgorithmview.h"
 #include "formalgorithmmenu.h"
 
 FormAlgorithmMenu::FormAlgorithmMenu(QWidget *parent)
@@ -47,11 +48,26 @@ void FormAlgorithmMenu::menuDbClicked(QListWidgetItem *item)
     int status = ModuleLoader::instance().openModule(module);
     switch(status) {
     case VA_OK: // 成功
-        MainWindow::instance().createAlgorithmForm(module);
+        {
+            FormAlgorithmView *view = new FormAlgorithmView(module);
+            MainWindow::instance().workspace().addSubWindow(view);
+            connect(view, SIGNAL(viewClosed(IModule *)), this, SLOT(viewClosed(IModule *)));
+            view->show();
+        }
         break;
     case -VA_OPENED: // 算法已经打开
+        QMessageBox::information(this, tr("Open Algorithm"), tr("The algorithm you selected has been opened."), QMessageBox::Ok);
         break;
     default: // 其它
         QMessageBox::critical(this, tr("Load Module"), tr("Failed to load module"), QMessageBox::Ok);
     }
+}
+
+/**
+ * @brief FormAlgorithmMenu::viewClosed 算法视图关闭时触发
+ * @param module
+ */
+void FormAlgorithmMenu::viewClosed(IModule *module)
+{
+    ModuleLoader::instance().closeModule(module);
 }

@@ -17,6 +17,7 @@ signals:
 
 public slots:
     void menuDbClicked(class QListWidgetItem *item);
+    void viewClosed(class IModule *module);
 
 protected:
     class QToolBox *m_toolBox;

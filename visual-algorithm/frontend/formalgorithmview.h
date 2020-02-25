@@ -15,8 +15,12 @@ public:
     explicit FormAlgorithmView(IModule *module, QWidget *parent = 0);
 
 signals:
+    void viewClosed(IModule *module);
 
 public slots:
+
+protected:
+    void closeEvent(QCloseEvent *event);
 
 protected:
     IModule *m_module;
