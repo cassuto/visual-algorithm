@@ -25,13 +25,48 @@ ModuleLoader::ModuleLoader()
     }
 }
 
+/**
+ * @brief 获取组列表
+ * @return reference to QSet
+ */
 const QSet<QString> &ModuleLoader::getGroups() const
 {
     return m_groups;
 }
 
+/**
+ * @brief 获取组内模块
+ * @param group 组名
+ * @return reference to QList
+ */
 const QList<class IModule *> &ModuleLoader::getModules(const QString &group) const
 {
     QMap<QString, QList<class IModule *> >::const_iterator it = m_modules.find(group);
     return *it;
+}
+
+/**
+ * @brief 打开算法模块
+ * @param mod 指向算法模块接口的指针
+ * @return status code
+ */
+int ModuleLoader::openModule(IModule *mod)
+{
+    if (!m_moduleOpened[mod]) {
+        if(int rc = mod->open()) {
+            return rc;
+        }
+        m_moduleOpened[mod] = true;
+        return 0;
+    }
+    return -VA_OPENED;
+}
+
+/**
+ * @brief 关闭算法模块
+ * @param mod 指向算法模块接口的指针
+ */
+void ModuleLoader::closeModule(IModule *mod)
+{
+    m_moduleOpened[mod] = false;
 }

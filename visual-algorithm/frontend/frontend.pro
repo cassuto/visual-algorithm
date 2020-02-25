@@ -16,13 +16,16 @@ SOURCES += \
     formalgorithmmenu.cpp \
     main.cpp \
     mainwindow.cpp \
-    moduleloader.cpp
+    moduleloader.cpp \
+    formalgorithmview.cpp
 
 HEADERS  += dialog.h \
     formalgorithmmenu.h \
     mainwindow.h \
     moduleloader.h \
-    include/module.h
+    include/module.h \
+    include/errorcodes.h \
+    formalgorithmview.h
 
 RESOURCES += \
     resources.qrc

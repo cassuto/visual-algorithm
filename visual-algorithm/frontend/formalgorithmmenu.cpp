@@ -1,7 +1,9 @@
 #include <QToolBox>
 #include <QListWidget>
 #include <QVBoxLayout>
+#include <QMessageBox>
 #include "moduleloader.h"
+#include "mainwindow.h"
 #include "formalgorithmmenu.h"
 
 FormAlgorithmMenu::FormAlgorithmMenu(QWidget *parent)
@@ -20,13 +22,36 @@ FormAlgorithmMenu::FormAlgorithmMenu(QWidget *parent)
         const QList<IModule *> &modList = ModuleLoader::instance().getModules(gs);
         foreach(IModule *mod, modList) {
             QListWidgetItem *item = new QListWidgetItem(QIcon(":/new/icons/assets/algogroup.png"),mod->getName(),page);
+            item->setData(Qt::UserRole, QVariant::fromValue<void*>(mod));
             page->addItem(item);
         }
         m_toolBox->addItem(page, gs);
+        // 连接信号槽
+        connect(page,SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(menuDbClicked(QListWidgetItem *)));
     }
     layout->addWidget(m_toolBox);
 
     // 初始化窗体栏
-    this->setWindowTitle("Select a Algorithm");
+    this->setWindowTitle(tr("Select a Algorithm"));
 }
 
+/**
+ * @brief FormAlgorithmMenu::menuDbClicked 用户单击工具栏时触发
+ * @param item
+ */
+void FormAlgorithmMenu::menuDbClicked(QListWidgetItem *item)
+{
+    IModule *module = static_cast<IModule *>(item->data(Qt::UserRole).value<void*>());
+    Q_ASSERT(module);
+
+    int status = ModuleLoader::instance().openModule(module);
+    switch(status) {
+    case VA_OK: // 成功
+        MainWindow::instance().createAlgorithmForm(module);
+        break;
+    case -VA_OPENED: // 算法已经打开
+        break;
+    default: // 其它
+        QMessageBox::critical(this, tr("Load Module"), tr("Failed to load module"), QMessageBox::Ok);
+    }
+}

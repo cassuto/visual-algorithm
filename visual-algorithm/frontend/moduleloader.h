@@ -29,6 +29,18 @@ public:
      */
     const QList<class IModule *> &getModules(const QString &group) const;
 
+    /**
+     * @brief 打开算法模块
+     * @param mod 指向算法模块接口的指针
+     * @return status code
+     */
+    int openModule(IModule *mod);
+    /**
+     * @brief 关闭算法模块
+     * @param mod 指向算法模块接口的指针
+     */
+    void closeModule(IModule *mod);
+
     // Singleton Mode
     static ModuleLoader &instance() {
         if(!m_instance) {
@@ -40,6 +52,7 @@ public:
 protected:
     QSet<QString> m_groups;
     QMap<QString, QList<IModule *> > m_modules;
+    QMap<IModule *,bool> m_moduleOpened;
 
 private:
     static ModuleLoader *m_instance;

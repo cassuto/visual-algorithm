@@ -3,6 +3,10 @@
 
 #include <QWidget>
 
+/**
+ * @brief The FormAlgorithmMenu class
+ * 选择算法窗口
+ */
 class FormAlgorithmMenu : public QWidget
 {
     Q_OBJECT
@@ -12,6 +16,7 @@ public:
 signals:
 
 public slots:
+    void menuDbClicked(class QListWidgetItem *item);
 
 protected:
     class QToolBox *m_toolBox;

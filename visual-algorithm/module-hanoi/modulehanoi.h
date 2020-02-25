@@ -13,9 +13,15 @@ public:
     ModuleHanoi();
 
 protected:
-    // 重载IModule接口
+    /**
+     * 重载IModule接口
+     * 接口定义详见 ../frontend/include/module.h
+     */
     const char *getName() const;
     const char *getGroup() const;
+    int open();
+    void close();
+
 };
 
 #endif // MODULEHANOI_H
