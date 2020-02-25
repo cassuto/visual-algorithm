@@ -16,6 +16,9 @@ SOURCES += modulehanoi.cpp
 HEADERS += modulehanoi.h\
         module-hanoi_global.h
 
+INCLUDEPATH += $$PWD/../frontend/include
+DEPENDPATH += $$PWD/../frontend/include
+
 unix {
     target.path = /usr/lib
     INSTALLS += target

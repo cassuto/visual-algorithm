@@ -1,4 +1,6 @@
 #include <QPluginLoader>
+#include <QDebug>
+#include "module.h"
 #include "moduleloader.h"
 
 ModuleLoader *ModuleLoader::m_instance = 0;
@@ -9,11 +11,18 @@ const char *ModuleLoader::m_groupText[] = {"贪心算法","分治算法","图论
 ModuleLoader::ModuleLoader()
 {
     // 扫描并加载算法模块
-    QPluginLoader pluginLoader("module-hanoi.dll");
-    if (QObject *plugin = pluginLoader.instance()) {
-        IModule *module = dynamic_cast<PluginInterface *>(plugin);
-    }
+    QList<QString> moduleFilenames;
+    moduleFilenames.append("../../module-hanoi/debug/module-hanoi.dll");
 
+    foreach(QString fn, moduleFilenames) {
+        QPluginLoader pluginLoader(fn);
+        if (QObject *plugin = pluginLoader.instance()) {
+            IModule *module = dynamic_cast<IModule *>(plugin);
+            qDebug() << module->getName();
+        } else {
+            qDebug()<<"failed\n";
+        }
+    }
 }
 
 int ModuleLoader::getGroupsNum() const

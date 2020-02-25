@@ -16,7 +16,6 @@ SOURCES += \
     formalgorithmmenu.cpp \
     main.cpp \
     mainwindow.cpp \
-    module.cpp \
     moduleloader.cpp
 
 HEADERS  += dialog.h \
@@ -27,3 +26,6 @@ HEADERS  += dialog.h \
 
 RESOURCES += \
     resources.qrc
+
+INCLUDEPATH += $$PWD/include
+DEPENDPATH += $$PWD/include

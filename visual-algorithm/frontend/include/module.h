@@ -1,13 +1,23 @@
-#ifndef MODULE_H
-#define MODULE_H
+#ifndef IMODULE_H
+#define IMODULE_H
 
-#define N_MAX_GROUPS 32
+#include <QtPlugin>
 
+// IModule 接口类
 class IModule
 {
 public:
-    virtual ModuleLoader()=0;
-    virtual ~ModuleLoader() {}
+    IModule() {}
+    virtual ~IModule() {}
+
+    /**
+     * @brief 获取模块名称
+     * @return pointer to string constant value
+     */
+    virtual const char *getName() const=0;
 };
 
-#endif // MODULE_H
+// 声明接口类
+Q_DECLARE_INTERFACE(IModule,"algorithm_module/1.0")
+
+#endif // IMODULE_H
