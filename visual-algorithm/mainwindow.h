@@ -13,6 +13,7 @@ public:
 
 protected:
     class QMdiArea *m_mdiArea;
+    class FormAlgorithmMenu *m_formAlgorithmMenu;
 };
 
 #endif // MAINWINDOW_H
