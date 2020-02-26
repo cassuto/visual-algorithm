@@ -1,16 +1,16 @@
-#ifndef MODULEKRUSKAL_H
-#define MODULEKRUSKAL_H
+#ifndef NODULEPRIM_H
+#define NODULEPRIM_H
 
-#include "module-kruskal_global.h"
+#include "nodule-prim_global.h"
 #include "imodule.h"
 
-class MODULEKRUSKALSHARED_EXPORT ModuleKruskal : public QObject, public IModule
+class NODULEPRIMSHARED_EXPORT NodulePrim : public QObject, public IModule
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.visualalgorithm.modules.kruskal")
+    Q_PLUGIN_METADATA(IID "org.visualalgorithm.modules.prim")
     Q_INTERFACES(IModule)
 public:
-    ModuleKruskal();
+    NodulePrim();
 
 protected:
     /**
@@ -24,4 +24,4 @@ protected:
     void close();
 };
 
-#endif // MODULEKRUSKAL_H
+#endif // NODULEPRIM_H

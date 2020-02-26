@@ -3,4 +3,5 @@ TEMPLATE = subdirs
 SUBDIRS += \
     frontend \
     module-hanoi \
-    module-kruskal
+    module-kruskal \
+    nodule-prim
