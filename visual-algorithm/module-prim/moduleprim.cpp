@@ -1,37 +1,35 @@
-#include "noduleprim.h"
+#include "moduleprim.h"
 
-
-NodulePrim::NodulePrim()
+ModulePrim::ModulePrim()
 {
 }
-
 
 /**
  * 重载IModule接口
  * 接口定义详见 ../frontend/include/module.h
  */
 
-const char *NodulePrim::getName() const
+const char *ModulePrim::getName() const
 {
     return "最小生成树-Prim";
 }
 
-const char *NodulePrim::getGroup() const
+const char *ModulePrim::getGroup() const
 {
     return "图论算法";
 }
 
-const char *NodulePrim::getModelSymbol() const
+const char *ModulePrim::getModelSymbol() const
 {
     return "graph";
 }
 
-int NodulePrim::open()
+int ModulePrim::open()
 {
     return 0;
 }
 
-void NodulePrim::close()
+void ModulePrim::close()
 {
 }
 

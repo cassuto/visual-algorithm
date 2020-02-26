@@ -1,20 +1,20 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-02-26T21:14:25
+# Project created by QtCreator 2020-02-26T22:32:51
 #
 #-------------------------------------------------
 
 QT       += widgets
 
-TARGET = nodule-prim
+TARGET = module-prim
 TEMPLATE = lib
 
-DEFINES += NODULEPRIM_LIBRARY
+DEFINES += MODULEPRIM_LIBRARY
 
-SOURCES += noduleprim.cpp
+SOURCES += moduleprim.cpp
 
-HEADERS += noduleprim.h\
-        nodule-prim_global.h
+HEADERS += moduleprim.h\
+        module-prim_global.h
 
 INCLUDEPATH += $$PWD/../frontend/include
 DEPENDPATH += $$PWD/../frontend/include

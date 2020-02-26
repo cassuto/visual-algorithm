@@ -4,4 +4,5 @@ SUBDIRS += \
     frontend \
     module-hanoi \
     module-kruskal \
-    nodule-prim
+    module-prim \
+    module-prim
