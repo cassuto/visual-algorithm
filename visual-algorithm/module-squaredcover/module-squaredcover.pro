@@ -16,6 +16,9 @@ SOURCES += modulesquaredcover.cpp
 HEADERS += modulesquaredcover.h\
         module-squaredcover_global.h
 
+INCLUDEPATH += $$PWD/../frontend/include
+DEPENDPATH += $$PWD/../frontend/include
+
 unix {
     target.path = /usr/lib
     INSTALLS += target

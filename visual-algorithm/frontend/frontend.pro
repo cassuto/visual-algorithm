@@ -19,7 +19,8 @@ SOURCES += \
     moduleloader.cpp \
     formalgorithmview.cpp \
     models.cpp \
-    modelhanoiimpl.cpp
+    modelhanoiimpl.cpp \
+    modelgraphimpl.cpp
 
 HEADERS  += dialog.h \
     formalgorithmmenu.h \
@@ -30,7 +31,8 @@ HEADERS  += dialog.h \
     include/imodel.h \
     include/imodule.h \
     models.h \
-    modelhanoiimpl.h
+    modelhanoiimpl.h \
+    modelgraphimpl.h
 
 RESOURCES += \
     resources.qrc

@@ -32,3 +32,31 @@ int ModuleHanoi::open()
 void ModuleHanoi::close()
 {
 }
+
+#if 0
+#include<iostream>
+using namespace std;
+int count=0;
+void hanio(int n,char a,char b,char c);
+int main(){
+    int n;
+    while(cin>>n){
+        hanio(n,'A','B','C');
+        cout<<count<<endl;
+    }
+    return 0;
+}
+void hanio(int n,char a,char b,char c){
+    if(n==1){
+        cout<<a<<"->"<<c<<endl;
+        count++;
+        return ;
+    }
+    hanio(n-1,a,c,b);
+    cout<<a<<"->"<<c<<endl;
+    hanio(n-1,b,a,c);
+    count++;
+    return ;
+}
+#endif
+
