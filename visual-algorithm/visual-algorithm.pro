@@ -5,4 +5,5 @@ SUBDIRS += \
     module-hanoi \
     module-kruskal \
     module-prim \
-    module-prim
+    module-prim \
+    module-quicksort
