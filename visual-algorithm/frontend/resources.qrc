@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/new/icons">
         <file>assets/algogroup.png</file>
+        <file>assets/run.png</file>
+        <file>assets/stop.png</file>
     </qresource>
 </RCC>

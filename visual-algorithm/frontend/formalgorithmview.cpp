@@ -1,6 +1,7 @@
 #include <QLayout>
 #include <QGroupBox>
 #include <QSizePolicy>
+#include <QPushButton>
 #include "models.h"
 #include "formalgorithmview.h"
 
@@ -27,8 +28,17 @@ FormAlgorithmView::FormAlgorithmView(IModule *module, IModel *model, QWidget *pa
     };
     groupPage[0]->addWidget(m_inputWidget);
     groupPage[0]->addWidget(groupBox[2]);
-    groupPage[0]->setStretch(0, 0);
-    groupPage[0]->setStretch(1, 1);
+    groupPage[0]->setStretch(0, 1);
+    groupPage[0]->setStretch(1, 0);
+
+    // 初始化控制面板
+    QHBoxLayout *ctrlLayout = new QHBoxLayout();
+    QPushButton *btnRun = new QPushButton(QIcon(":/new/icons/assets/run.png"), tr("Run."),groupBox[2]);
+    ctrlLayout->addWidget(btnRun);
+    QPushButton *btnStop = new QPushButton(QIcon(":/new/icons/assets/stop.png"), tr("Stop."),groupBox[2]);
+    ctrlLayout->addWidget(btnStop);
+    groupBox[2]->setLayout(ctrlLayout);
+
     groupPage[1]->addWidget(m_outputWidget);
     for(int i=0;i<2;++i) {
         groupBox[i]->setLayout(groupPage[i]);
