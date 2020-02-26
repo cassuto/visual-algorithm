@@ -7,15 +7,15 @@ class IModel
 {
 public:
     /**
-     * @brief 创建数据输入Widget
+     * @brief 获取数据输入Widget实例
      * @param parent
      */
-    virtual QWidget *createInputWidget(QWidget * parent = 0)=0;
+    virtual QWidget *getInputWidget(QWidget * parent = 0)=0;
     /**
-     * @brief 创建数据输出Widget
+     * @brief 获取数据输出Widget实例
      * @param parent
      */
-    virtual QWidget *createOutputWidget(QWidget * parent = 0)=0;
+    virtual QWidget *getOutputWidget(QWidget * parent = 0)=0;
 };
 
 /**

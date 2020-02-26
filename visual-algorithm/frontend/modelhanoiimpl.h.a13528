@@ -2,7 +2,6 @@
 #define MODELHANOIIMPL_H
 
 #include <QWidget>
-#include <QColor>
 #include "imodel.h"
 
 /**
@@ -14,7 +13,7 @@ class ModelHanoiImpl : public QObject, public IModelHanoi
     Q_OBJECT
 public:
     ModelHanoiImpl();
-    ~ModelHanoiImpl();
+    ~ModelHanoiImpl() {}
 
     /**
       * IModel接口实现
@@ -30,14 +29,10 @@ public:
     int getDisksNum() const;
     void moveTop(char src, char dst);
 
-private slots:
-    void numDiskValueChanged(int i);
-
 protected:
     void createDataInputPage();
     void createDataOutputPage();
     void updateStep();
-    void updateDisk(bool reset);
 
 private:
     int m_maxDiskNum;
@@ -49,9 +44,6 @@ private:
     QWidget *m_pageDin;
     QWidget *m_pageDout;
     int m_pillar[3];
-    int m_numDisks;
-    QColor *m_diskFillColor;
-    QColor m_pillarColor;
     QList<class QGraphicsItem *> m_graphItems;
 };
 
