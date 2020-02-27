@@ -74,6 +74,11 @@ QWidget *ModelLinearListImpl::getOutputWidget(QWidget * parent)
     return m_pageDout;
 }
 
+void ModelLinearListImpl::setEna(bool enabled)
+{
+    m_pageDin->setEnabled(enabled);
+}
+
 void ModelLinearListImpl::slotBtnAppendPressed()
 {
     if (m_listLen + 1 < m_maxListSize) {

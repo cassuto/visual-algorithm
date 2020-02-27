@@ -70,6 +70,11 @@ QWidget *ModelGraphImpl::getOutputWidget(QWidget *parent) {
     return m_pageDout;
 }
 
+void ModelGraphImpl::setEna(bool enabled)
+{
+    m_pageDin->setEnabled(enabled);
+}
+
 /**
  * @brief onBtnCreatePressed 建图按钮单击信号槽
  */

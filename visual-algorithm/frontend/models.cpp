@@ -2,7 +2,7 @@
 #include "modelhanoiimpl.h"
 #include "modelgraphimpl.h"
 #include "modellinearlistimpl.h"
-#include "modelmatriximpl.h"
+#include "modelchessboximpl.h"
 #include "models.h"
 
 /////////////////////////////////////////////////////////////////////////
@@ -28,8 +28,8 @@ IModel *ModelFactory::createModel(const char *symbol)
         return new ModelGraphImpl();
     } else if (std::strcmp(symbol, "linearlist")==0) {
         return new ModelLinearListImpl();
-    } else if (std::strcmp(symbol, "matrix")==0) {
-        return new ModelMatrixImpl();
+    } else if (std::strcmp(symbol, "chessbox")==0) {
+        return new ModelChessBoxImpl();
     } else {
         return 0l;
     }

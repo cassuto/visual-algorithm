@@ -22,6 +22,9 @@ public:
      */
     int startAlgorithm();
     void stopAlgorithm();
+    void setTimeInval(int v) {
+        m_timeinval = v;
+    }
 
     inline bool isRunning() const {
         return m_running;
@@ -41,6 +44,7 @@ private:
     class IModule *m_module;
     class IModel *m_model;
     bool m_running;
+    int m_timeinval;
     QSemaphore *m_sempNext;
 };
 

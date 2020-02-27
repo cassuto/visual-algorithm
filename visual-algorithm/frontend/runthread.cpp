@@ -8,6 +8,7 @@ RunThread::RunThread(IModule *module, IModel *model, QObject *parent)
       m_module(module),
       m_model(model),
       m_running(false),
+      m_timeinval(100),
       m_sempNext(0)
 {
 }
@@ -52,7 +53,7 @@ void RunThread::waitForNextStep()
 {
     //m_sempNext->acquire();
     //m_sempNext->release();
-    my_sleep(100);
+    my_sleep(m_timeinval);
 }
 
 void RunThread::run()

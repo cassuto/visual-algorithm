@@ -14,6 +14,8 @@ public:
      * @param parent
      */
     virtual class QWidget *getOutputWidget(class QWidget * parent = 0)=0;
+    virtual void setEna(bool enabled)=0;
+    virtual int getTimeInval() const=0;
 };
 
 /**
@@ -141,16 +143,18 @@ public:
 
 
 /**
- * @brief The IModelMatrix class
- * 矩阵模型 （算法无关）
+ * @brief The IModelChessBox class
+ * 棋盘模型 （算法无关）
  */
-class IModelMatrix : public IModel
+class IModelChessBox : public IModel
 {
 public:
-    IModelMatrix() {}
+    IModelChessBox() {}
 
     virtual int getNumRows() const=0;
     virtual int getNumColumns() const=0;
+    virtual int getMagX() const=0;
+    virtual int getMagY() const=0;
     virtual int getElement(int row, int col) const=0;
     virtual void setElement(int row, int col, int value)=0;
 };

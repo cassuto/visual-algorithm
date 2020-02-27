@@ -98,6 +98,11 @@ QWidget *ModelHanoiImpl::getOutputWidget(QWidget * parent)
     return m_pageDout;
 }
 
+void ModelHanoiImpl::setEna(bool enabled)
+{
+    m_pageDin->setEnabled(enabled);
+}
+
 /**
  * IModelHanoi接口实现
  * 接口定义详见 ../frontend/include/imodule.h

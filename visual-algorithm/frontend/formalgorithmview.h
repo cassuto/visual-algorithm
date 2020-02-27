@@ -21,6 +21,7 @@ signals:
 public slots:
     void slotRunPressed();
     void slotStopPressed();
+    void slotTimeinvalChanged(int v);
 
 protected:
     void updateEnables();
@@ -31,6 +32,7 @@ protected:
     IModel *m_model;
     QWidget *m_inputWidget;
     QWidget *m_outputWidget;
+    class QSlider *m_sliderTimeinval;
     class QPushButton *m_btnRun;
     class QPushButton *m_btnStop;
     class RunThread *m_runThread;

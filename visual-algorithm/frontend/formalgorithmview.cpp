@@ -1,7 +1,10 @@
 #include <QLayout>
+#include <QFormLayout>
 #include <QGroupBox>
 #include <QSizePolicy>
 #include <QPushButton>
+#include <QSlider>
+#include <QLabel>
 #include "models.h"
 #include "runthread.h"
 #include "formalgorithmview.h"
@@ -34,13 +37,29 @@ FormAlgorithmView::FormAlgorithmView(IModule *module, IModel *model, QWidget *pa
     groupPage[0]->setStretch(1, 0);
 
     // 初始化控制面板
+    QVBoxLayout *layMain = new QVBoxLayout();
+
+    QFormLayout *speedLayout = new QFormLayout();
+    QLabel *lab = new QLabel(tr("Time Interval:"), groupBox[2]);
+    speedLayout->addWidget(lab);
+    m_sliderTimeinval = new QSlider(groupBox[2]);
+    m_sliderTimeinval->setMaximum(2000);
+    m_sliderTimeinval->setMinimum(100);
+    m_sliderTimeinval->setValue(m_model->getTimeInval());
+    speedLayout->addWidget(m_sliderTimeinval);
+
     QHBoxLayout *ctrlLayout = new QHBoxLayout();
+    ctrlLayout->addWidget(m_sliderTimeinval);
     m_btnRun = new QPushButton(QIcon(":/new/icons/assets/run.png"), tr("Run."),groupBox[2]);
     ctrlLayout->addWidget(m_btnRun);
     m_btnStop = new QPushButton(QIcon(":/new/icons/assets/stop.png"), tr("Stop."),groupBox[2]);
     ctrlLayout->addWidget(m_btnStop);
     groupBox[2]->setLayout(ctrlLayout);
 
+    layMain->addLayout(speedLayout);
+    layMain->addLayout(ctrlLayout);
+
+    connect(m_sliderTimeinval, SIGNAL(valueChanged(int)), this, SLOT(slotTimeinvalChanged(int)));
     connect(m_btnRun, SIGNAL(pressed()), this, SLOT(slotRunPressed()));
     connect(m_btnStop, SIGNAL(pressed()), this, SLOT(slotStopPressed()));
 
@@ -59,25 +78,36 @@ FormAlgorithmView::FormAlgorithmView(IModule *module, IModel *model, QWidget *pa
 
 void FormAlgorithmView::slotRunPressed()
 {
+    m_btnRun->setEnabled(false);
+    m_btnStop->setEnabled(true);
+    m_model->setEna(false);
     m_runThread->startAlgorithm();
-    updateEnables();
+    m_model->setEna(true);
+    m_btnRun->setEnabled(true);
+    m_btnStop->setEnabled(false);
+    //updateEnables();
 }
 
 void FormAlgorithmView::slotStopPressed()
 {
-    m_runThread->stopAlgorithm();
-    updateEnables();
+    //m_runThread->stopAlgorithm();
+    //updateEnables();
+}
+
+void FormAlgorithmView::slotTimeinvalChanged(int v)
+{
+    m_runThread->setTimeInval(v);
 }
 
 void FormAlgorithmView::updateEnables()
 {
-    if(m_runThread->isRunning()) {
+    /*if(m_runThread->isRunning()) {
         m_btnRun->setEnabled(false);
         m_btnStop->setEnabled(true);
     } else {
         m_btnRun->setEnabled(true);
         m_btnStop->setEnabled(false);
-    }
+    }*/
 }
 
 void FormAlgorithmView::closeEvent(QCloseEvent *)

@@ -20,6 +20,10 @@ public:
       */
     QWidget *getInputWidget(QWidget * parent = 0);
     QWidget *getOutputWidget(QWidget * parent = 0);
+    void setEna(bool enabled);
+    int getTimeInval() const {
+        return 500;
+    }
 
     /**
       * IModelGraph 接口实现
