@@ -9,7 +9,6 @@
 
 ModelGraphImpl::ModelGraphImpl(QObject *parent)
     : QObject(parent),
-      m_maxNumNodes(256),
       m_pageDin(new QWidget()),
       m_pageDout(new QWidget())
 {
@@ -129,12 +128,37 @@ void ModelGraphImpl::randomGenInput()
   * 接口定义详见 ../frontend/include/imodule.h
   */
 
-void ModelGraphImpl::addEdge(int u, int v, double val)
+int ModelGraphImpl::matrix(int u, int v) const
+{
+    return m_matrix[u][v];
+}
+int ModelGraphImpl::getNumNodes() const
+{
+    return m_graph->getNumNodes();
+}
+int ModelGraphImpl::getNumEdges() const
+{
+    return m_graph->getNumEdges();
+}
+int ModelGraphImpl::getWeight(int i) const
+{
+    return m_graph->getEdge(i)->weight;
+}
+void ModelGraphImpl::getEndpoints(int i, int *u, int *v) const
+{
+    *u = m_graph->getEdge(i)->u;
+    *v = m_graph->getEdge(i)->v;
+}
+
+void ModelGraphImpl::addEdge(int u, int v, int val)
 {
     UndirectedEdge edge;
     edge.u = u;
     edge.v = v;
+    edge.weight = val;
     m_graph->addEdge(edge);
+    m_matrix[u][v]=1;
+    m_matrix[v][u]=1;
 }
 
 void ModelGraphImpl::removeEdge(int u, int v)
@@ -155,5 +179,9 @@ void ModelGraphImpl::addNodes(int count)
 
 void ModelGraphImpl::clear()
 {
+    for(int i=1;i<=m_graph->getNumNodes(); ++i)
+        for(int j=1;j<=m_graph->getNumNodes(); ++j) {
+            m_matrix[i][j]=0;
+        }
     m_graph->clear();
 }

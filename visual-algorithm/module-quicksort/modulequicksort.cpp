@@ -22,7 +22,7 @@ const char *ModuleQuicksort::getGroup() const
 
 const char *ModuleQuicksort::getModelSymbol() const
 {
-    return "histogram";
+    return "linearlist";
 }
 
 int ModuleQuicksort::open()

@@ -25,7 +25,12 @@ public:
       * IModelGraph 接口实现
       * 接口定义详见 ../frontend/include/imodule.h
       */
-    void addEdge(int u, int v, double val);
+    int matrix(int u, int v) const;
+    int getNumNodes() const;
+    int getNumEdges() const;
+    int getWeight(int i) const;
+    void getEndpoints(int i, int *u, int *v) const;
+    void addEdge(int u, int v, int val);
     void removeEdge(int u, int v);
     void addNodes(int count);
     void clear();
@@ -43,7 +48,8 @@ protected:
     void updateInputEnable();
 
 private:
-    int m_maxNumNodes;
+    static const int m_maxNumNodes = 256;
+    int m_matrix[m_maxNumNodes][m_maxNumNodes];
     QWidget *m_pageDin;
     QWidget *m_pageDout;
     class QSpinBox *m_spinNumNodes;

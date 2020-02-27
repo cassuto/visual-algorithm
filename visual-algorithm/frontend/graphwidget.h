@@ -19,12 +19,23 @@ public:
      * @retval NULL if none
      */
     GraphNode *getNode(int id);
+    /**
+     * @brief 通过ID获取边
+     * @apram id
+     * @return pointer to the edge
+     */
+    inline const UndirectedEdge *getEdge(int id) const {
+        return &m_edges[id-1];
+    }
 
     void clear();
     void addNode(const GraphNode &node);
     void addEdge(const UndirectedEdge &edge);
     inline int getNumNodes() const {
         return m_nodes.count();
+    }
+    inline int getNumEdges() const {
+        return m_edges.count();
     }
     bool connected(int u, int v);
 

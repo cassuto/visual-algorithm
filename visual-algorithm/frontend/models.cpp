@@ -1,6 +1,7 @@
 #include <cstring>
 #include "modelhanoiimpl.h"
 #include "modelgraphimpl.h"
+#include "modellinearlistimpl.h"
 #include "models.h"
 
 /////////////////////////////////////////////////////////////////////////
@@ -24,6 +25,8 @@ IModel *ModelFactory::createModel(const char *symbol)
         return new ModelHanoiImpl();
     } else if (std::strcmp(symbol, "graph")==0) {
         return new ModelGraphImpl();
+    } else if (std::strcmp(symbol, "linearlist")==0) {
+        return new ModelLinearListImpl();
     } else {
         return 0l;
     }
