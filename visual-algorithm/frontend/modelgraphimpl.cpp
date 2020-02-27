@@ -161,9 +161,11 @@ void ModelGraphImpl::addEdge(int u, int v, int val)
     m_matrix[v][u]=1;
 }
 
-void ModelGraphImpl::removeEdge(int u, int v)
+void ModelGraphImpl::setEdgeHighlight(int u, int v)
 {
-
+    m_graph->getNode(u)->highlight = true;
+    m_graph->getNode(v)->highlight = true;
+    m_graph->update();
 }
 
 void ModelGraphImpl::addNodes(int count)
@@ -175,6 +177,17 @@ void ModelGraphImpl::addNodes(int count)
         node.color = QColor(rand()%255,rand()%255,rand()%255);
         m_graph->addNode(node);
     }
+}
+
+void ModelGraphImpl::addNode(int id)
+{
+    if(m_graph->getNode(id)) {
+        return; // 结点已经存在
+    }
+    GraphNode node;
+    node.id = id;
+    node.color = QColor(rand()%255,rand()%255,rand()%255);
+    m_graph->addNode(node);
 }
 
 void ModelGraphImpl::clear()

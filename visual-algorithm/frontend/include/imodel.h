@@ -89,16 +89,21 @@ public:
      */
     virtual void addEdge(int u, int v, int val)=0;
     /**
-     * @brief 删除从u到v的所有边
+     * @brief 高亮从u到v的所有边
      * @param u 起点编号
      * @param v 终点编号
      */
-    virtual void removeEdge(int u, int v)=0;
+    virtual void setEdgeHighlight(int u, int v)=0;
     /**
      * @brief 添加count个结点
      * @param count
      */
     virtual void addNodes(int count)=0;
+    /**
+     * @brief 添加编号为id的结点
+     * @param id
+     */
+    virtual void addNode(int id)=0;
     /**
      * @brief 删除所有结点与边
      */

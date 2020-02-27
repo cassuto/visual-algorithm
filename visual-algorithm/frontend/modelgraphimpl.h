@@ -31,8 +31,9 @@ public:
     int getWeight(int i) const;
     void getEndpoints(int i, int *u, int *v) const;
     void addEdge(int u, int v, int val);
-    void removeEdge(int u, int v);
+    void setEdgeHighlight(int u, int v);
     void addNodes(int count);
+    void addNode(int id);
     void clear();
 
 signals:

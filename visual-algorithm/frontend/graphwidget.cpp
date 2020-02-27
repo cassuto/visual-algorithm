@@ -175,7 +175,9 @@ void GraphWidget::paintEvent(QPaintEvent *) {
             /*bool filtered=(i.nodeA->degree<m_minDegree
                 || i.nodeB->degree<m_minDegree);
             if(filtered){pen.setColor(m_edgeFilteredColor);p.setPen(pen);}*/
-            //pen.setColor(m_edgeHighlightedColor);p.setPen(pen);
+
+            if(i.nodeU->highlight && i.nodeV->highlight)
+                pen.setColor(m_edgeHighlightedColor);p.setPen(pen);
 
             QString ws=QString::number(i.weight,'f',3).mid(1);
             double k= (transformY(i.nodeU->y)-transformY(i.nodeV->y))/

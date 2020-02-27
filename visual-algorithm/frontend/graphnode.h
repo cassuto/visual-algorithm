@@ -9,6 +9,7 @@ class GraphNode{
 public:
     GraphNode()
     {
+        highlight = false;
         x = OGDF_left + (OGDF_width>>1);
         y = OGDF_top + (OGDF_height>>1);
     }
@@ -18,6 +19,7 @@ public:
     ogdf::node ogdfID;
     double x, y;
     QColor color;
+    bool highlight;
 
 protected:
     double aniX, aniY;

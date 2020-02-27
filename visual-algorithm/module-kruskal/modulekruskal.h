@@ -23,6 +23,7 @@ protected:
     int open();
     void close();
     int run(IModel *model, IControl *control);
+
 };
 
 #endif // MODULEKRUSKAL_H
