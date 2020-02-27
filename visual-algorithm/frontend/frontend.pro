@@ -25,7 +25,8 @@ SOURCES += \
     modelhanoiimpl.cpp \
     modelgraphimpl.cpp \
     graphwidget.cpp \
-    modellinearlistimpl.cpp
+    modellinearlistimpl.cpp \
+    modelmatriximpl.cpp
 
 HEADERS  += dialog.h \
     formalgorithmmenu.h \
@@ -41,7 +42,8 @@ HEADERS  += dialog.h \
     graphnode.h \
     graphedge.h \
     graphwidget.h \
-    modellinearlistimpl.h
+    modellinearlistimpl.h \
+    modelmatriximpl.h
 
 RESOURCES += \
     resources.qrc

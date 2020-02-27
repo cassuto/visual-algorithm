@@ -135,5 +135,20 @@ public:
 };
 
 
+/**
+ * @brief The IModelMatrix class
+ * 矩阵模型 （算法无关）
+ */
+class IModelMatrix : public IModel
+{
+public:
+    IModelMatrix() {}
+
+    virtual int getNumRows() const=0;
+    virtual int getNumColumns() const=0;
+    virtual int getElement(int row, int col) const=0;
+    virtual void setElement(int row, int col, int value)=0;
+};
+
 
 #endif // IMODEL
