@@ -19,8 +19,11 @@ signals:
     void viewClosed(IModule *module);
 
 public slots:
+    void slotRunPressed();
+    void slotStopPressed();
 
 protected:
+    void updateEnables();
     void closeEvent(QCloseEvent *event);
 
 protected:
@@ -28,6 +31,9 @@ protected:
     IModel *m_model;
     QWidget *m_inputWidget;
     QWidget *m_outputWidget;
+    class QPushButton *m_btnRun;
+    class QPushButton *m_btnStop;
+    class RunThread *m_runThread;
 };
 
 #endif // FORMDATAINPUT_H

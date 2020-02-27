@@ -25,6 +25,9 @@ public:
     }
 
 protected:
+    void closeEvent(QCloseEvent *);
+
+protected:
     class QMdiArea *m_mdiArea;
     class FormAlgorithmMenu *m_formAlgorithmMenu;
 

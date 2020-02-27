@@ -1,8 +1,6 @@
 #ifndef IMODEL
 #define IMODEL
 
-#include <QWidget>
-
 class IModel
 {
 public:
@@ -10,12 +8,12 @@ public:
      * @brief 获取数据输入Widget实例
      * @param parent
      */
-    virtual QWidget *getInputWidget(QWidget * parent = 0)=0;
+    virtual class QWidget *getInputWidget(class QWidget * parent = 0)=0;
     /**
      * @brief 获取数据输出Widget实例
      * @param parent
      */
-    virtual QWidget *getOutputWidget(QWidget * parent = 0)=0;
+    virtual class QWidget *getOutputWidget(class QWidget * parent = 0)=0;
 };
 
 /**
@@ -38,6 +36,8 @@ public:
      * @param dst 柱子编号 'A' 'B' 'C'
      */
     virtual void moveTop(char src, char dst)=0;
+
+    virtual void resetPillar()=0;
 };
 
 /**

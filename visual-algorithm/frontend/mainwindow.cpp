@@ -22,3 +22,8 @@ MainWindow::~MainWindow()
 {
 
 }
+
+void MainWindow::closeEvent(QCloseEvent *)
+{
+    exit(0);
+}

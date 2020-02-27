@@ -2,7 +2,8 @@
 #define IMODULE_H
 
 #include "errorcodes.h"
-
+#include "imodel.h"
+#include "icontrol.h"
 #include <QtPlugin>
 
 // IModule 接口类
@@ -36,6 +37,13 @@ public:
      * @brief 反初始化算法
      */
     virtual void close() =0;
+    /**
+     * @brief 运行算法
+     * @param model 模型接口（前端依据getModelSymbol()创建）
+     * @param control 控制接口
+     * @return status code
+     */
+    virtual int run(IModel *model, IControl *control)=0;
 };
 
 // 声明接口类

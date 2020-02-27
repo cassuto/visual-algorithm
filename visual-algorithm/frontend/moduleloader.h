@@ -9,6 +9,8 @@
 #include "imodule.h"
 #include "imodel.h"
 
+class RunThread;
+
 /**
  * @brief The ModuleLoader class
  * 算法模块装载器

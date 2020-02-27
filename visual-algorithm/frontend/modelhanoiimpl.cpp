@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include <QGraphicsLineItem>
 #include <cstring>
+#include <QDebug>
 #include "modelhanoiimpl.h"
 
 ModelHanoiImpl::ModelHanoiImpl()
@@ -13,7 +14,7 @@ ModelHanoiImpl::ModelHanoiImpl()
       m_step(0),
       m_pageDin(new QWidget()),
       m_pageDout(new QWidget()),
-      m_diskFillColor(new QColor[m_maxDiskNum]),
+      m_diskFillColor(new QColor[m_maxDiskNum+1]),
       m_pillarColor(QColor(128,128,128))
 {
     createDataInputPage();
@@ -125,9 +126,17 @@ void ModelHanoiImpl::moveTop(char src, char dst)
     updateStep();
 }
 
+void ModelHanoiImpl::resetPillar()
+{
+    m_pillar[0] = m_numDisks;
+    m_pillar[1] = 0;
+    m_pillar[2] = 0;
+    updateDisk(true);
+}
+
 void ModelHanoiImpl::updateStep()
 {
-    m_lbStep->setText(QString(tr("step %1")).arg(m_step));
+    m_lbStep->setText(QString(tr("step %1")).arg(++m_step));
     updateDisk(false);
 }
 
@@ -135,7 +144,7 @@ void ModelHanoiImpl::updateDisk(bool reset)
 {
     if(reset) {
         // 随机生成圆盘填充色
-        for(int i=0;i<m_numDisks;++i) {
+        for(int i=1;i<=m_numDisks;++i) {
             m_diskFillColor[i].setRed(double(rand())/RAND_MAX*255);
             m_diskFillColor[i].setGreen(double(rand())/RAND_MAX*255);
             m_diskFillColor[i].setBlue(double(rand())/RAND_MAX*255);
@@ -152,12 +161,12 @@ void ModelHanoiImpl::updateDisk(bool reset)
     // 按照圆盘数绘制塔柱
     for(int p=1;p<=3;++p) {
         for(int n=1;n<=m_pillar[p-1];++n) {
-            int x0 = (p-1)*200+(m_numDisks-n)*(diskHeight/2)+diskHeight;
-            int x1 = (p-1)*200+166-(m_numDisks-n)*(diskHeight/2);
-            int y0 = 390-(m_numDisks-n+1)*diskHeight;
+            int x0 = (p-1)*200+(m_pillar[p-1]-n)*(diskHeight/2)+diskHeight;
+            int x1 = (p-1)*200+166-(m_pillar[p-1]-n)*(diskHeight/2);
+            int y0 = 390-(m_pillar[p-1]-n+1)*diskHeight;
             int w = x1-x0+1;
             QGraphicsRectItem *rect = new QGraphicsRectItem(x0, y0, w, diskHeight);
-            rect->setBrush(QBrush(QColor(rand()%255,rand()%255,rand()%255)));
+            rect->setBrush(QBrush(m_diskFillColor[n]));
             m_scene->addItem(rect);
             m_graphItems.append(rect);
         }

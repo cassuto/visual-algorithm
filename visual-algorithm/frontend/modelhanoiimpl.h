@@ -29,6 +29,7 @@ public:
      */
     int getDisksNum() const;
     void moveTop(char src, char dst);
+    void resetPillar();
 
 private slots:
     void numDiskValueChanged(int i);

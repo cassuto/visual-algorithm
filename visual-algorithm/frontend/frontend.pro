@@ -26,7 +26,8 @@ SOURCES += \
     modelgraphimpl.cpp \
     graphwidget.cpp \
     modellinearlistimpl.cpp \
-    modelmatriximpl.cpp
+    modelmatriximpl.cpp \
+    runthread.cpp
 
 HEADERS  += dialog.h \
     formalgorithmmenu.h \
@@ -43,7 +44,9 @@ HEADERS  += dialog.h \
     graphedge.h \
     graphwidget.h \
     modellinearlistimpl.h \
-    modelmatriximpl.h
+    modelmatriximpl.h \
+    runthread.h \
+    include/icontrol.h
 
 RESOURCES += \
     resources.qrc

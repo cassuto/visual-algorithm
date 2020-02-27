@@ -22,7 +22,14 @@ protected:
     const char *getModelSymbol() const;
     int open();
     void close();
+    int run(IModel *model, IControl *control);
 
+private:
+    void hanio(int n,char a,char b,char c);
+
+private:
+    IModelHanoi *m_model;
+    IControl *m_control;
 };
 
 #endif // MODULEHANOI_H

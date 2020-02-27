@@ -34,6 +34,17 @@ void ModuleQuicksort::close()
 {
 }
 
+/**
+ * @brief 运行算法
+ * @param model 模型接口（前端依据getModelSymbol()创建）
+ * @param control 控制接口
+ * @return status code
+ */
+int ModuleQuicksort::run(IModel *model, IControl *control)
+{
+    return 0;
+}
+
 #if 0
 #include<stdio.h>
 #define N 10000

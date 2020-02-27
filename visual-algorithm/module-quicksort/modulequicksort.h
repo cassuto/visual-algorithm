@@ -22,6 +22,7 @@ protected:
     const char *getModelSymbol() const;
     int open();
     void close();
+    int run(IModel *model, IControl *control);
 };
 
 #endif // MODULEQUICKSORT_H
