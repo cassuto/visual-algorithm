@@ -121,6 +121,7 @@ void LinearWidget::paintEvent(QPaintEvent *event)
     double x=0;
     for(int i=1;i<=model->m_listLen;++i) {
         int h = model->m_list[i] * barHeightDiv;
+        //p.drawText(QPoint(barX+x, barY+height()-h), QString::number(model->m_list[i]));
         p.setBrush(QBrush(QColor(rand()%255,rand()%255,rand()%255)));
         p.drawRect(barX+x,barY+height()-h, barWidth, h);
         x += barWidth;
