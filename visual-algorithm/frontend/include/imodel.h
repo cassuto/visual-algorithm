@@ -74,4 +74,18 @@ public:
     virtual void clear()=0;
 };
 
+
+/**
+ * @brief The IModelLinearList class
+ * 线性表模型 （算法无关）
+ */
+class IModelLinearList : public IModel
+{
+public:
+    IModelLinearList() {}
+
+};
+
+
+
 #endif // IMODEL

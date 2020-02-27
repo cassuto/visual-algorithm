@@ -3,5 +3,7 @@
         <file>assets/algogroup.png</file>
         <file>assets/run.png</file>
         <file>assets/stop.png</file>
+        <file>assets/creategraph.png</file>
+        <file>assets/addedge.png</file>
     </qresource>
 </RCC>

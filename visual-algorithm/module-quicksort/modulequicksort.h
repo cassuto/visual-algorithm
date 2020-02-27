@@ -7,7 +7,7 @@
 class MODULEQUICKSORTSHARED_EXPORT ModuleQuicksort : public QObject, public IModule
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.visualalgorithm.modules.kruskal")
+    Q_PLUGIN_METADATA(IID "org.visualalgorithm.modules.quicksort")
     Q_INTERFACES(IModule)
 public:
     ModuleQuicksort();

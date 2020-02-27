@@ -1,5 +1,6 @@
 #include <cstring>
 #include "modelhanoiimpl.h"
+#include "modelgraphimpl.h"
 #include "models.h"
 
 /////////////////////////////////////////////////////////////////////////
@@ -21,6 +22,8 @@ IModel *ModelFactory::createModel(const char *symbol)
 {
     if (std::strcmp(symbol, "hanoi")==0) {
         return new ModelHanoiImpl();
+    } else if (std::strcmp(symbol, "graph")==0) {
+        return new ModelGraphImpl();
     } else {
         return 0l;
     }

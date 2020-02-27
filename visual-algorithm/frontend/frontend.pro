@@ -11,6 +11,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = frontend
 TEMPLATE = app
 
+CONFIG += C++11
+
+QMAKE_CXXFLAGS += -Wno-unused-parameter
 
 SOURCES += \
     formalgorithmmenu.cpp \
@@ -20,7 +23,9 @@ SOURCES += \
     formalgorithmview.cpp \
     models.cpp \
     modelhanoiimpl.cpp \
-    modelgraphimpl.cpp
+    modelgraphimpl.cpp \
+    graphwidget.cpp \
+    modellinearlistimpl.cpp
 
 HEADERS  += dialog.h \
     formalgorithmmenu.h \
@@ -32,10 +37,15 @@ HEADERS  += dialog.h \
     include/imodule.h \
     models.h \
     modelhanoiimpl.h \
-    modelgraphimpl.h
+    modelgraphimpl.h \
+    graphnode.h \
+    graphedge.h \
+    graphwidget.h \
+    modellinearlistimpl.h
 
 RESOURCES += \
     resources.qrc
 
 INCLUDEPATH += $$PWD/include
 DEPENDPATH += $$PWD/include
+LIBS += -lOGDF -lpsapi

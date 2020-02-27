@@ -45,6 +45,9 @@ FormAlgorithmView::FormAlgorithmView(IModule *module, IModel *model, QWidget *pa
         layout->addWidget(groupBox[i]);
     }
 
+    layout->setStretch(0,0);
+    layout->setStretch(1,1);
+
     this->setWindowTitle(tr("Algorithm View - ") + QString(module->getName()) + "-" + QString(module->getGroup()));
     this->setMinimumSize(QSize(1000,500));
 }

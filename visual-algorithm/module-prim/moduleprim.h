@@ -7,7 +7,7 @@
 class MODULEPRIMSHARED_EXPORT ModulePrim : public QObject, public IModule
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.visualalgorithm.modules.kruskal")
+    Q_PLUGIN_METADATA(IID "org.visualalgorithm.modules.prim")
     Q_INTERFACES(IModule)
 public:
     ModulePrim();

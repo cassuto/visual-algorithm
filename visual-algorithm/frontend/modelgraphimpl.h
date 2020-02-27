@@ -5,7 +5,7 @@
 #include "imodel.h"
 
 /**
- * @brief The IHanoiModel class
+ * @brief The IModelGraph class
  * 图论模型（算法无关）
  */
 class ModelGraphImpl : public QObject, public IModelGraph
@@ -39,6 +39,8 @@ public slots:
 protected:
     void createDataInputPage();
     void createDataOutputPage();
+    void randomGenInput();
+    void updateInputEnable();
 
 private:
     int m_maxNumNodes;
@@ -46,6 +48,9 @@ private:
     QWidget *m_pageDout;
     class QSpinBox *m_spinNumNodes;
     class QSpinBox *m_spinStart, *m_spinEnd;
+    class QSpinBox *m_spinWeight;
+    class QPushButton *m_btnAddEdge;
+    class GraphWidget *m_graph;
 };
 
 #endif // MODELGRAPHIMPL_H

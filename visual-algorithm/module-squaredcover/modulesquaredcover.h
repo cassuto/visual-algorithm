@@ -7,7 +7,7 @@
 class MODULESQUAREDCOVERSHARED_EXPORT ModuleSquaredCover : public QObject, public IModule
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.visualalgorithm.modules.kruskal")
+    Q_PLUGIN_METADATA(IID "org.visualalgorithm.modules.squaredcover")
     Q_INTERFACES(IModule)
 public:
     ModuleSquaredCover();

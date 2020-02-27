@@ -11,6 +11,10 @@ ModuleLoader::ModuleLoader()
     // 扫描并加载算法模块
     QList<QString> moduleFilenames;
     moduleFilenames.append("../../module-hanoi/debug/module-hanoi.dll");
+    moduleFilenames.append("../../module-kruskal/debug/module-kruskal.dll");
+    moduleFilenames.append("../../module-prim/debug/module-prim.dll");
+    moduleFilenames.append("../../module-quicksort/debug/module-quicksort.dll");
+    moduleFilenames.append("../../module-squaredcover/debug/module-squaredcover.dll");
 
     foreach(QString fn, moduleFilenames) {
         QPluginLoader pluginLoader(fn);
