@@ -5,6 +5,11 @@ ModuleHanoi::ModuleHanoi()
 }
 
 /**
+ * 重载IModule接口
+ * 接口定义详见 ../frontend/include/module.h
+ */
+
+/**
  * @brief 返回算法模块名称
  * @return pointer to string constant value
  */

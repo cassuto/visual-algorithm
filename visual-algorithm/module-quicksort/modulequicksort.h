@@ -23,6 +23,9 @@ protected:
     int open();
     void close();
     int run(IModel *model, IControl *control);
+
+private:
+    int *m_data;
 };
 
 #endif // MODULEQUICKSORT_H
