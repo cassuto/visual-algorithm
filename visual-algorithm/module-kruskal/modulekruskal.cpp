@@ -4,6 +4,7 @@
 #include <algorithm>
 using namespace std;
 
+int ans;
 int father[105];//记录父亲节点，开始都指向自己
 
 int n,m;
@@ -27,7 +28,7 @@ void kruskal(IModelGraph *mdl, IControl *control)
         if(x!=y)
          {
              father[x]=y;
-             //ans+=t[i].w;
+             ans+=t[i].w;
 
              // 反馈到前端（添加生成树的点和边）
              mdl->addNode(t[i].x);
@@ -69,17 +70,23 @@ int ModuleKruskal::run(IModel *model, IControl *control)
 
     for(i=1;i<=n;i++)
         father[i]=i;
-    for(i=1;i<=m;i++) {
+    for(i=0;i<m;i++) {
         // 从前端读取一条边
-        mdl->getEndpoints(i, &t[i].x, &t[i].y);
-        t[i].w = mdl->getWeight(i);
+        mdl->getEndpoints(i+1, &t[i].x, &t[i].y);
+        t[i].w = mdl->getWeight(i+1);
     }
 
     // 反馈到前端（清除当前图）
     mdl->clear();
+    ans = 0;
 
     sort(t,t+m,cmp);
     kruskal(mdl, control);
+
+    // 反馈到前端（算法结果）
+    char msg[2048];
+    snprintf(msg,sizeof msg, "sum{w(G)} = %d", ans);
+    mdl->setResult(msg);
 
     return 0;
 }

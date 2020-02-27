@@ -28,12 +28,12 @@ void ModelChessBoxImpl::createDataInputPage()
     m_spinNumRows = new QSpinBox(m_pageDin);
     m_spinNumRows->setMaximum(m_maxRowSize);
     m_spinNumRows->setMinimum(1);
-    m_spinNumRows->setValue(10);
+    m_spinNumRows->setValue(16);
     layout->addRow(tr("Rows"), m_spinNumRows);
     m_spinNumCols = new QSpinBox(m_pageDin);
     m_spinNumCols->setMaximum(m_maxColSize);
     m_spinNumCols->setMinimum(1);
-    m_spinNumCols->setValue(10);
+    m_spinNumCols->setValue(16);
 
     connect(m_spinNumRows, SIGNAL(valueChanged(int)), this, SLOT(slotSpinNumRowsChanged(int)));
     connect(m_spinNumCols, SIGNAL(valueChanged(int)), this, SLOT(slotSpinNumColsChanged(int)));
@@ -53,6 +53,8 @@ void ModelChessBoxImpl::createDataInputPage()
     layout->addWidget(btnGen);
 
     connect(btnGen, SIGNAL(pressed()), this, SLOT(slotRandomGenInput()));
+    connect(m_spinMagX, SIGNAL(valueChanged(int)), this, SLOT(slotMagXYChanged(int)));
+    connect(m_spinMagY, SIGNAL(valueChanged(int)), this, SLOT(slotMagXYChanged(int)));
 }
 
 /**
@@ -80,20 +82,22 @@ QWidget *ModelChessBoxImpl::getOutputWidget(QWidget * parent)
     return m_pageDout;
 }
 
-void ModelChessBoxImpl::setEna(bool enabled)
-{
-    m_pageDin->setEnabled(enabled);
-}
-
 void ModelChessBoxImpl::slotSpinNumRowsChanged(int v)
 {
     m_rows = v;
     m_spinMagY->setMaximum(v);
+    updateMatrixLayout();
 }
 void ModelChessBoxImpl::slotSpinNumColsChanged(int v)
 {
     m_cols = v;
     m_spinMagX->setMaximum(v);
+    updateMatrixLayout();
+}
+
+void ModelChessBoxImpl::slotMagXYChanged(int)
+{
+    updateMatrixLayout();
 }
 
 void ModelChessBoxImpl::slotRandomGenInput()
@@ -103,11 +107,6 @@ void ModelChessBoxImpl::slotRandomGenInput()
     m_spinMagX->setValue((rand()%m_cols)+1);
     m_spinMagY->setValue((rand()%m_rows)+1);
     updateMatrixLayout();
-
-    for(int i=1;i<=m_rows;++i)
-        for(int j=1;j<=m_cols;++j) {
-            setElement(i, j, ((i==m_spinMagY->value()) && (j==m_spinMagX->value())) ? 0 : -1);
-        }
 }
 
 void ModelChessBoxImpl::updateMatrixLayout()
@@ -122,6 +121,10 @@ void ModelChessBoxImpl::updateMatrixLayout()
         m_colors[i].setGreen(rand()%255);
         m_colors[i].setBlue(rand()%255);
     }
+    for(int i=1;i<=m_rows;++i)
+        for(int j=1;j<=m_cols;++j) {
+            setElement(i, j, ((i==m_spinMagY->value()) && (j==m_spinMagX->value())) ? 0 : -1);
+        }
     for(int i=1;i<=m_rows;++i)
         for(int j=1;j<=m_cols;++j) {
              m_matrixTable->setCellWidget(i-1, j-1, &m_colorWidgets[i][j]);

@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QSlider>
 #include <QLabel>
+#include <QCloseEvent>
 #include "models.h"
 #include "runthread.h"
 #include "formalgorithmview.h"
@@ -40,12 +41,13 @@ FormAlgorithmView::FormAlgorithmView(IModule *module, IModel *model, QWidget *pa
     QVBoxLayout *layMain = new QVBoxLayout();
 
     QFormLayout *speedLayout = new QFormLayout();
-    QLabel *lab = new QLabel(tr("Time Interval:"), groupBox[2]);
-    speedLayout->addWidget(lab);
-    m_sliderTimeinval = new QSlider(groupBox[2]);
-    m_sliderTimeinval->setMaximum(2000);
-    m_sliderTimeinval->setMinimum(100);
-    m_sliderTimeinval->setValue(m_model->getTimeInval());
+    m_labTimeInval = new QLabel(groupBox[2]);
+    speedLayout->addWidget(m_labTimeInval);
+    m_sliderTimeinval = new QSlider(Qt::Vertical, groupBox[2]);
+    m_sliderTimeinval->setMaximum(1500);
+    m_sliderTimeinval->setMinimum(10);
+    m_sliderTimeinval->setTickPosition(QSlider::TicksBelow);
+    m_sliderTimeinval->setTickInterval(10);
     speedLayout->addWidget(m_sliderTimeinval);
 
     QHBoxLayout *ctrlLayout = new QHBoxLayout();
@@ -54,14 +56,16 @@ FormAlgorithmView::FormAlgorithmView(IModule *module, IModel *model, QWidget *pa
     ctrlLayout->addWidget(m_btnRun);
     m_btnStop = new QPushButton(QIcon(":/new/icons/assets/stop.png"), tr("Stop."),groupBox[2]);
     ctrlLayout->addWidget(m_btnStop);
-    groupBox[2]->setLayout(ctrlLayout);
 
     layMain->addLayout(speedLayout);
     layMain->addLayout(ctrlLayout);
+    groupBox[2]->setLayout(layMain);
 
     connect(m_sliderTimeinval, SIGNAL(valueChanged(int)), this, SLOT(slotTimeinvalChanged(int)));
     connect(m_btnRun, SIGNAL(pressed()), this, SLOT(slotRunPressed()));
     connect(m_btnStop, SIGNAL(pressed()), this, SLOT(slotStopPressed()));
+
+    m_sliderTimeinval->setValue(m_model->getTimeInval());
 
     groupPage[1]->addWidget(m_outputWidget);
     for(int i=0;i<2;++i) {
@@ -73,16 +77,16 @@ FormAlgorithmView::FormAlgorithmView(IModule *module, IModel *model, QWidget *pa
     layout->setStretch(1,1);
 
     this->setWindowTitle(tr("Algorithm View - ") + QString(module->getName()) + "-" + QString(module->getGroup()));
-    this->setMinimumSize(QSize(1000,500));
+    this->setMinimumSize(QSize(1000,550));
 }
 
 void FormAlgorithmView::slotRunPressed()
 {
     m_btnRun->setEnabled(false);
     m_btnStop->setEnabled(true);
-    m_model->setEna(false);
+    m_inputWidget->setEnabled(false);
     m_runThread->startAlgorithm();
-    m_model->setEna(true);
+    m_inputWidget->setEnabled(true);
     m_btnRun->setEnabled(true);
     m_btnStop->setEnabled(false);
     //updateEnables();
@@ -96,6 +100,7 @@ void FormAlgorithmView::slotStopPressed()
 
 void FormAlgorithmView::slotTimeinvalChanged(int v)
 {
+    m_labTimeInval->setText(QString(tr("Time Interval (%1 ms):")).arg(v));
     m_runThread->setTimeInval(v);
 }
 
@@ -110,7 +115,11 @@ void FormAlgorithmView::updateEnables()
     }*/
 }
 
-void FormAlgorithmView::closeEvent(QCloseEvent *)
+void FormAlgorithmView::closeEvent(QCloseEvent *event)
 {
-    emit viewClosed(m_module);
+    if(!m_runThread->isRunning()) {
+        emit viewClosed(m_module);
+    } else {
+        event->ignore();
+    }
 }

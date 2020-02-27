@@ -172,14 +172,10 @@ void GraphWidget::paintEvent(QPaintEvent *) {
         p.setPen(pen);
         foreach(const UndirectedEdge &i, m_edges) {
             QPen last = pen;
-            /*bool filtered=(i.nodeA->degree<m_minDegree
-                || i.nodeB->degree<m_minDegree);
-            if(filtered){pen.setColor(m_edgeFilteredColor);p.setPen(pen);}*/
-
             if(i.nodeU->highlight && i.nodeV->highlight)
                 pen.setColor(m_edgeHighlightedColor);p.setPen(pen);
 
-            QString ws=QString::number(i.weight,'f',3).mid(1);
+            QString ws=QString::number(i.weight);
             double k= (transformY(i.nodeU->y)-transformY(i.nodeV->y))/
                       (transformX(i.nodeU->x)-transformX(i.nodeV->x)+0.0);
             double textX=(transformX(i.nodeU->x)+transformX(i.nodeV->x))/2.0;

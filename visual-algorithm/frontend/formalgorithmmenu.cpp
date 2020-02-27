@@ -26,7 +26,7 @@ FormAlgorithmMenu::FormAlgorithmMenu(QWidget *parent)
             item->setData(Qt::UserRole, QVariant::fromValue<void*>(mod));
             page->addItem(item);
         }
-        m_toolBox->addItem(page, gs);
+        m_toolBox->addItem(page, QIcon(":/new/icons/assets/algogroup.png"), gs);
         // 连接信号槽
         connect(page,SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(menuDbClicked(QListWidgetItem *)));
     }

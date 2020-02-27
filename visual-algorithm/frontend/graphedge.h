@@ -8,7 +8,7 @@ class GraphNode;
 class GraphEdge{
 public:
     int u, v;
-    double weight;
+    int weight;
     virtual void setEdge(int, int, double=0)=0;
 };
 class UndirectedEdge : public GraphEdge{

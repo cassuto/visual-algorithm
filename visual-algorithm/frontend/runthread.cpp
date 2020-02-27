@@ -21,22 +21,23 @@ int RunThread::startAlgorithm()
 {
     if(!m_running) {
         m_running = true;
-        m_sempNext = new QSemaphore();
-        QThread::start();
+        //m_sempNext = new QSemaphore();
+        //QThread::start();
         m_module->run(m_model, this);
         //m_sempNext->acquire();
+        m_running = false;
     }
     return 0;
 }
 
 void RunThread::stopAlgorithm()
 {
-    m_sempNext->release();
+    /*m_sempNext->release();
     QThread::terminate();
     QThread::wait();
     m_running = false;
     delete m_sempNext;
-    m_sempNext = 0;
+    m_sempNext = 0;*/
 }
 
 void RunThread::my_sleep(int msec)
@@ -49,6 +50,7 @@ void RunThread::my_sleep(int msec)
 /**
  * @brief waitForNextStep
  */
+#include <QDebug>
 void RunThread::waitForNextStep()
 {
     //m_sempNext->acquire();

@@ -33,6 +33,7 @@ protected:
     QWidget *m_inputWidget;
     QWidget *m_outputWidget;
     class QSlider *m_sliderTimeinval;
+    class QLabel *m_labTimeInval;
     class QPushButton *m_btnRun;
     class QPushButton *m_btnStop;
     class RunThread *m_runThread;

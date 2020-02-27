@@ -18,9 +18,8 @@ public:
       */
     QWidget *getInputWidget(QWidget * parent = 0);
     QWidget *getOutputWidget(QWidget * parent = 0);
-    void setEna(bool enabled);
     int getTimeInval() const {
-        return 200;
+        return 100;
     }
 
     /**
@@ -45,6 +44,7 @@ public slots:
     void slotRandomGenInput();
     void slotSpinNumRowsChanged(int v);
     void slotSpinNumColsChanged(int v);
+    void slotMagXYChanged(int);
 
 private:
     class QWidget *m_pageDin;
@@ -57,8 +57,8 @@ private:
     int m_rows, m_cols;
     int m_matrixColWidth;
 
-    static const int m_maxRowSize = 15;
-    static const int m_maxColSize = 15;
+    static const int m_maxRowSize = 24;
+    static const int m_maxColSize = 24;
     int m_matrix[m_maxRowSize+1][m_maxColSize+1];
     static const int m_maxColors = 10000;
     QColor m_colors[m_maxColors+1];

@@ -20,9 +20,8 @@ public:
       */
     QWidget *getInputWidget(QWidget * parent = 0);
     QWidget *getOutputWidget(QWidget * parent = 0);
-    void setEna(bool enabled);
     int getTimeInval() const {
-        return 500;
+        return 1000;
     }
 
     /**
@@ -39,6 +38,7 @@ public:
     void addNodes(int count);
     void addNode(int id);
     void clear();
+    void setResult(const char *msg);
 
 signals:
 
@@ -61,6 +61,7 @@ private:
     class QSpinBox *m_spinStart, *m_spinEnd;
     class QSpinBox *m_spinWeight;
     class QPushButton *m_btnAddEdge;
+    class QLabel *m_result;
     class GraphWidget *m_graph;
 };
 

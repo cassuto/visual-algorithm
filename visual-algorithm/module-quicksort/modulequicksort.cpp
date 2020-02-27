@@ -97,7 +97,7 @@ void Quick(int *arr,int start,int end, IModelLinearList *mdl,IControl *control)
 //len为数组的长度
 void Quick_Sort(int *arr,int  len, IModelLinearList *mdl,IControl *control)
 {
-    Quick(arr,1,len, mdl,control);
+    Quick(arr,0,len-1, mdl,control);
 }
 
 /**
@@ -115,8 +115,8 @@ int ModuleQuicksort::run(IModel *model, IControl *control)
     int len = mdl->getSize();
     if(m_data) delete [] m_data;
     m_data = new int[len+1];
-    for(int i=1;i<=len;++i) {
-        m_data[i] = mdl->getElement(i);
+    for(int i=0;i<len;++i) {
+        m_data[i] = mdl->getElement(i+1);
     }
 
     // 运行算法
@@ -124,6 +124,10 @@ int ModuleQuicksort::run(IModel *model, IControl *control)
     return 0;
 }
 
+
+//////////////////////////////////////////////////////////////////
+// 控制台版本
+//////////////////////////////////////////////////////////////////
 #if 0
 #include<stdio.h>
 #define N 10000

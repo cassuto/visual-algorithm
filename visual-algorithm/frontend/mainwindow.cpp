@@ -1,6 +1,7 @@
 #include <QMdiArea>
 #include <QStatusBar>
 #include <QDebug>
+#include <QMenuBar>
 #include "formalgorithmmenu.h"
 #include "mainwindow.h"
 

@@ -98,11 +98,6 @@ QWidget *ModelHanoiImpl::getOutputWidget(QWidget * parent)
     return m_pageDout;
 }
 
-void ModelHanoiImpl::setEna(bool enabled)
-{
-    m_pageDin->setEnabled(enabled);
-}
-
 /**
  * IModelHanoi接口实现
  * 接口定义详见 ../frontend/include/imodule.h
@@ -128,11 +123,22 @@ void ModelHanoiImpl::moveTop(char src, char dst)
     int a=toPillarIndex(src), b=toPillarIndex(dst);
     --m_pillar[a];
     ++m_pillar[b];
+    int ncolor = m_pcs[a].top();
+    m_pcs[a].pop();
+    m_pcs[b].push(ncolor);
     updateStep();
 }
 
 void ModelHanoiImpl::resetPillar()
 {
+    for(int i=0;i<3;++i) {
+        while(!m_pcs[i].empty()) {
+            m_pcs[i].pop();
+        }
+    }
+    for(int i=1;i<=m_numDisks; ++i) {
+        m_pcs[0].push(i);
+    }
     m_pillar[0] = m_numDisks;
     m_pillar[1] = 0;
     m_pillar[2] = 0;
@@ -171,7 +177,8 @@ void ModelHanoiImpl::updateDisk(bool reset)
             int y0 = 390-(m_pillar[p-1]-n+1)*diskHeight;
             int w = x1-x0+1;
             QGraphicsRectItem *rect = new QGraphicsRectItem(x0, y0, w, diskHeight);
-            rect->setBrush(QBrush(m_diskFillColor[n]));
+            int ncolor = m_pcs[p-1].at(m_pillar[p-1]-n);
+            rect->setBrush(QBrush(m_diskFillColor[ncolor]));
             m_scene->addItem(rect);
             m_graphItems.append(rect);
         }
@@ -181,8 +188,6 @@ void ModelHanoiImpl::updateDisk(bool reset)
 void ModelHanoiImpl::numDiskValueChanged(int i)
 {
     m_numDisks = m_spinDiskNum->value();
-    m_pillar[0] = m_numDisks;
-    m_pillar[1] = 0;
-    m_pillar[2] = 0;
+    resetPillar();
     updateDisk(true);
 }

@@ -102,12 +102,17 @@ int ModulePrim::run(IModel *model, IControl *control)
 
       ans=0;
       prim(mdl, control);
-      if(q==m)
-             printf("%d\n",ans);
-      else
-             printf("No solution\n");
 
-    return 0;
+      // 反馈到前端（算法结果）
+      char msg[2048];
+
+
+      if(q==m)
+          snprintf(msg,sizeof msg, "sum{w(G)} = %d", ans);
+      else
+          snprintf(msg,sizeof msg, "No solution\n");
+        mdl->setResult(msg);
+      return 0;
 }
 
 

@@ -56,9 +56,13 @@ void ModelGraphImpl::createDataInputPage()
 void ModelGraphImpl::createDataOutputPage()
 {
     QVBoxLayout *layout = new QVBoxLayout(m_pageDout);
+    m_result = new QLabel(m_pageDout);
+    layout->addWidget(m_result);
     m_graph = new GraphWidget(m_pageDout);
     layout->addWidget(m_graph);
     updateInputEnable();
+    layout->setStretch(0,0);
+    layout->setStretch(1,1);
 }
 
 QWidget *ModelGraphImpl::getInputWidget(QWidget *parent) {
@@ -68,11 +72,6 @@ QWidget *ModelGraphImpl::getInputWidget(QWidget *parent) {
 QWidget *ModelGraphImpl::getOutputWidget(QWidget *parent) {
     m_pageDout->setParent(parent);
     return m_pageDout;
-}
-
-void ModelGraphImpl::setEna(bool enabled)
-{
-    m_pageDin->setEnabled(enabled);
 }
 
 /**
@@ -202,4 +201,10 @@ void ModelGraphImpl::clear()
             m_matrix[i][j]=0;
         }
     m_graph->clear();
+}
+
+void ModelGraphImpl::setResult(const char *msg)
+{
+    m_result->setText(msg);
+    m_result->adjustSize();
 }

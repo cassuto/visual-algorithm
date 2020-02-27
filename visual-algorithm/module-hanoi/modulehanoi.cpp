@@ -1,50 +1,5 @@
 #include "modulehanoi.h"
 
-ModuleHanoi::ModuleHanoi()
-{
-}
-
-/**
- * 重载IModule接口
- * 接口定义详见 ../frontend/include/module.h
- */
-
-/**
- * @brief 返回算法模块名称
- * @return pointer to string constant value
- */
-const char *ModuleHanoi::getName() const
-{
-    return "汉诺塔问题";
-}
-
-/**
- * @brief 返回算法分组名称
- * @return pointer to string constant value
- */
-const char *ModuleHanoi::getGroup() const
-{
-    return "递归算法";
-}
-
-/**
- * @brief 返回模型标识符
- * @return pointer to string constant value
- */
-const char *ModuleHanoi::getModelSymbol() const
-{
-    return "hanoi";
-}
-
-int ModuleHanoi::open()
-{
-    return 0;
-}
-
-void ModuleHanoi::close()
-{
-}
-
 void ModuleHanoi::hanio(int n,char a,char b,char c)
 {
     if(n==1){
@@ -92,6 +47,57 @@ int ModuleHanoi::run(IModel *model, IControl *control)
     return 0;
 }
 
+
+ModuleHanoi::ModuleHanoi()
+{
+}
+
+/**
+ * 重载IModule接口
+ * 接口定义详见 ../frontend/include/module.h
+ */
+
+/**
+ * @brief 返回算法模块名称
+ * @return pointer to string constant value
+ */
+const char *ModuleHanoi::getName() const
+{
+    return "汉诺塔问题";
+}
+
+/**
+ * @brief 返回算法分组名称
+ * @return pointer to string constant value
+ */
+const char *ModuleHanoi::getGroup() const
+{
+    return "递归算法";
+}
+
+/**
+ * @brief 返回模型标识符
+ * @return pointer to string constant value
+ */
+const char *ModuleHanoi::getModelSymbol() const
+{
+    return "hanoi";
+}
+
+int ModuleHanoi::open()
+{
+    return 0;
+}
+
+void ModuleHanoi::close()
+{
+}
+
+
+
+//////////////////////////////////////////////////////////////////
+// 控制台版本
+//////////////////////////////////////////////////////////////////
 #if 0
 #include<iostream>
 using namespace std;

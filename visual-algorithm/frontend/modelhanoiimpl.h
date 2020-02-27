@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QColor>
+#include <QStack>
 #include "imodel.h"
 
 /**
@@ -22,7 +23,6 @@ public:
       */
     QWidget *getInputWidget(QWidget * parent = 0);
     QWidget *getOutputWidget(QWidget * parent = 0);
-    void setEna(bool enabled);
     int getTimeInval() const {
         return 200;
     }
@@ -56,6 +56,7 @@ private:
     int m_pillar[3];
     int m_numDisks;
     QColor *m_diskFillColor;
+    QStack<int> m_pcs[3];
     QColor m_pillarColor;
     QList<class QGraphicsItem *> m_graphItems;
 };

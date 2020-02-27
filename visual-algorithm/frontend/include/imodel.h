@@ -14,7 +14,6 @@ public:
      * @param parent
      */
     virtual class QWidget *getOutputWidget(class QWidget * parent = 0)=0;
-    virtual void setEna(bool enabled)=0;
     virtual int getTimeInval() const=0;
 };
 
@@ -110,6 +109,11 @@ public:
      * @brief 删除所有结点与边
      */
     virtual void clear()=0;
+    /**
+     * @brief 设置结果
+     * @param msg
+     */
+    virtual void setResult(const char *msg)=0;
 };
 
 

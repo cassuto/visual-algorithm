@@ -38,6 +38,7 @@ void ModelLinearListImpl::createDataInputPage()
     QPushButton *btnGen = new QPushButton(QIcon(":/new/icons/assets/creategraph.png"), tr("Generate"), m_pageDin);
     layout->addWidget(btnGen);
     m_spinValue = new QSpinBox(m_pageDin);
+    m_spinValue->setValue(10);
     layout->addRow(tr("value"), m_spinValue);
     QPushButton *btnAppend = new QPushButton(tr("Append"), m_pageDin);
     layout->addWidget(btnAppend);
@@ -74,15 +75,11 @@ QWidget *ModelLinearListImpl::getOutputWidget(QWidget * parent)
     return m_pageDout;
 }
 
-void ModelLinearListImpl::setEna(bool enabled)
-{
-    m_pageDin->setEnabled(enabled);
-}
-
 void ModelLinearListImpl::slotBtnAppendPressed()
 {
     if (m_listLen + 1 < m_maxListSize) {
         setElement(++m_listLen, m_spinValue->value());
+        m_spinNum->setValue(m_listLen);
         updateView();
     }
 }
@@ -97,7 +94,7 @@ void ModelLinearListImpl::slotRandomGenInput()
     int n = m_spinNum->value();
     m_listLen = 0;
     for(int i=0;i<n;++i) {
-        setElement(++m_listLen, /*(rand()&1?1:-1) * */ double(rand())/RAND_MAX * INT_MAX);
+        setElement(++m_listLen, double(rand())/RAND_MAX * INT_MAX);
     }
     updateView();
 }
